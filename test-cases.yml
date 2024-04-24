@@ -1,0 +1,13 @@
+---
+- summary: |
+    Проверка возможности провести игру без регистрации
+  requirement: |
+    Пользователь должен иметь возможность провести игру без регистрации
+  prerequisites: |
+    открыта страница сайта https://codebattle.hexlet.io/
+  test-data: |
+    empty
+  steps:
+    - Нажимаем на кнопку "TRY SIMPLE BATTLE" 
+  expected-result: |
+    Пользователь должен попасть в игру
