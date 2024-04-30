@@ -183,7 +183,345 @@
   test-data: |
     Сообщение = Hello, Hexlet!
   steps:
-    - Находим чаи General в левом низу экрана
+    - Находим чат General в левом низу экрана
+    - В поисковой строке чата General пишем сообщение
+    - Нажимаем кнопку Send
+  expected-result: |
+    Сообщение появится в чате
+
+- summary: |
+    Проверка возможности создания новой игры по уровню сложности
+  requirement: |
+    Пользователь может создать новую игру, задав уровень сложности
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+  test-data: |
+    отсутствуют
+  steps:
+    - В правом верхнем углу нажимаем кнопку Create a game
+    - В Level выбираем 3 звезды
+    - Нажимаем кнопку Create battle
+    - Нажимаем кнопку Continue
+  expected-result: |
+    Созданная игра появится в лобби
+
+- summary: |
+    Проверка возможности создания игры с другим пользователем
+  requirement: |
+    Пользователь может создать новую игру с другим пользователем, с другом, с ботом
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+  test-data: |
+    отсутствуют 
+  steps:
+    - В правом верхнем углу нажимаем на кнопку Create a game
+    - В Game Type оставляем With other users
+    - Нажимаем кнопку Create battle
+  expected-result: |
+    Созданная игра появится в лобби
+
+- summary: | 
+    Проверка возможности создания новой игры с ботом
+  requirement: | 
+    Пользователь может создать новую игру с другим пользователем, с другом, с ботом 
+  prerequisites: |
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+  test-data: |
+    отсутствуют
+  steps: 
+    - В правом верхнем углу нажимаем на кнопку Create a game
+    - В Game Type нажимаем кнопку With a bot
+    - Нажимаем кнопку Create battle
+  expected-result: |
+     Пользователю открывается игра с ботом
+
+- summary: | 
+    Проверка возможности создания новой игры с другом
+  requirement: | 
+    Пользователь может создать новую игру с другим пользователем, с другом, с ботом
+  prerequisites: |
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+  test-data: |
+    отсутствуют
+  steps: 
+    - В правом верхнем углу нажимаем на кнопку Create a game
+    - В Game Type нажимаем кнопку With a friend
+    - В Choose opponent выбираем пользователя
+    - Нажимаем кнопку Create invite
+  expected-result: |
+    Приглашение отправлено выбранному пользователю
+
+- summary: |
+    Проверка возможности создания новой игры по времени
+  requirement: |
+    Пользователь может создать новую игру, задав время в диапазоне от 3 до 60 минут
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+  test-data: |
+    отсутствуют
+  steps:
+    - В правом верхнем углу нажимаем кнопку Create a game
+    - В Time control ставим ползунок на 25 минут
+    - Нажимаем кнопку Create battle
+    - Нажимаем кнопку Continue 
+  expected-result: |
+    Созданная игра появится в лобби
+
+- summary: |
+    Проверка возможности создания новой игры по тегу или названию
+  requirement: |
+    Пользователь может при создании игры выбрать задачу по названию или по тегам
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+  test-data: |
+    отсутствуют
+  steps:
+    - В правом верхнем углу нажимаем кнопку "Create a game"
+    - В Choose task by name or tags выбираем "boom"
+    - Нажимаем кнопку Create battle
+    - Нажимаем кнопку "Continue"
+  expected-result: |
+    Созданная игра появится в лобби
+
+- summary: |
+    Проверка возможности присоединения к уже созданной игре
+  requirement: |
+    Пользователь может присоединиться к созданной другим пользователем игре
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+  test-data: |
+    отсутствуют
+  steps:
+    - В лобби выбираем уже созданную игру
+    - Во вкладке Actions нажимаем кнопку 'Fight'
+  expected-result: |
+    Открывается игра с другим пользователем
+
+- summary: |
+    Проверка возможности создания турнира
+  requirement: |
+    Пользователь имеет возможность создать турнир
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#tournaments
+  test-data: |
+    Параметры турнира: 
+    Name = My fancy tour 
+    Type = team 
+    Description =Markdown description.[stream_link](https://codebattle.hexlet.io)
+    Starts at (Asia/Omsk) = 10/20/20223 11:53 PM
+    Access type = public
+    Task strategy = game
+    Task provider = level
+    Level = elementary
+    Players limit = 64
+    Default language = js
+    Match timeout = 177
+    Break duration sec = 42
+  steps:
+    - Нажимаем кнопку "Tournaments Info"
+    - В "Create a new tournament" нажимаем кнопку "Create"
+  expected-result: |
+    Откроется страница турнира
+
+- summary: |
+    Проверка возможности просматривания уже созданного турнира
+  requirement: |
+    Пользователь может просматривать созданные другими пользователями турниры
+  prerequisites:
+    Пользователь авторизован
+    У пользователя имеется премиум подписка
+    Открыта страница https://codebattle.hexlet.io/#tournaments
+  test-data: |
+    отсутствуют
+  steps:
+    - В Completed tournaments выбираем турнир
+    - нажимаем кнопку "Show"
+  expected-result: |
+    Откроется страница турнира с данными турнира
+
+- summary: |
+    Проверка возможности участвовать в уже созданном турнире
+  requirement: |
+    Пользователь имеет возможность участвовать в активных турнирах других пользователей
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#tournaments
+  test-data: |
+    отсутствуют
+  steps:
+    - В Live tournaments выбираем турнир
+    - Нажимаем кнопку "Show"
+    - В открытой странице турнира нажимаем кнопку "Join"
+  expected-result: |
+    В графе Total players будет указано имя пользователя
+
+- summary: |
+    Проверка возможности фильтровать игроков по имени пользователя
+  requirement: |
+    Пользователь может фильтровать рейтинг игроков по имении пользователя
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/users
+  test-data: |
+    username = kate
+  steps:
+    - Выбираем users rating период total
+    - В поле поиска username вписываем "kate"
+  expected-result: |
+    Рейтинг покажет игроков, имя пользователя которых содержит заданные требования
+
+- summary: |
+    Проверка возможности фильтровать игроков по игре с ботом
+  requirement: |
+    Пользователь может фильтровать рейтинг игроков по игре с ботом
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/users
+  test-data: |
+    отсутствуют
+  steps:
+    - Выбираем users rating период total
+    - Возле поля with bots ставим галочку
+  expected-result: |
+    Рейтинг покажет игроков, только с учетом игр с ботом
+
+- summary: |
+    Проверка возможности сортировать рейтинг игроков по критериям
+  requirement: |
+    Пользователь может сортировать рейтинг игроков по критериям 
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/users
+  test-data: |
+    отсутствуют
+  steps:
+    - Выбираем users rating период total
+    - В значение rating нажимаем на стрелочку, указывающую вверх
+  expected-result: |
+    Рейтинг покажет игроков отсортированных по рейтингу
+
+- summary: |
+    Проверка возможности фильтровать рейтинг игроков по временному промежутку
+  requirement: |
+    Пользователь может фильтровать рейтинг игроков по временному промежутку
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/users
+  test-data: |
+    отсутствуют
+  steps:
+    - Выбираем users rating период monthly
+  expected-result: |
+    Рейтинг покажет игроков за месяц, их количество высветится в поле Total entries
+
+- summary: |
+    Проверка возможности завершения игры после выполнения задания
+  requirement: |
+    Пользователь имеет возможность завершить игру, выполнив задание
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра с ботом
+  test-data: |
+    Параметры игры:
+    level = 1
+    game type = with a bot
+    time control = 36 min
+    chose task = random task
+    Решение игры:
+    const _ = require("lodash");
+    const R = require("rambda");
+    const solution = (first, second) => {
+    return 0;};
+    module.exports = solution;
+  steps:
+    - Выбираем язык программирования Node.js
+    - В редактор кода прописываем решение игры
+    - Нажимаем на кнопку Check solution
+  expected-result: |
+    После проверки кода появляется сообщение о правильности решения
+
+- summary: |
+    Проверка возможности завершения игры по времени
+  requirement: |
+    Пользователь имеет возможность завершить игру по времени
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра с ботом
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with a bot
+    time control = 3 min
+    chose task = random task
+  steps:
+    - Выбираем язык программирования Node.js
+  expected-result: |
+    По истечении времени игры появляется сообщение о том, что время закончилось, победителей в игре нет
+
+- summary: |
+    Проверка возможности сдаться во время игры
+  requirement: |
+    Пользователь имеет возможность сдаться во время игры
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра с ботом
+  test-data: |
+    Параметры игры: 
+    level = 3
+    game type = with a bot
+    time control = 3 min
+    chose task = random task
+  steps:
+    - Нажимаем кнопку "Give up"
+    - В появившемся окне жмем на "Give up"
+  expected-result: |
+    Появляется сообщение о том, что игра проиграна
+
+- summary: |
+    Проверка возможности просматривания записей завершенных игр
+  requirement: |
+    Пользователь имеет возможность просматривать завершенные игры
+  prerequisites:
+    Пользователь авторизован
+    У пользователя имеется премиум подписка
+    Открыта страница https://codebattle.hexlet.io/#completedGames
+  test-data: |
+    отсутствуют
+  steps:
+    - Выбираем игроков
+    - Нажимаем кнопку Show
+    - На странице проведенной игры нажимаем play
+  expected-result: |
+    Запускается запись проведенной игры
+
+- summary: |
+    Проверка возможности отправки сообщения во время игры
+  requirement: |
+    Пользователь может отправить сообщение во время игры
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра с ботом
+  test-data: |
+    Параметры игры: 
+    level = 3
+    game type = with a bot
+    time control = 3 min
+    chose task = random task
+    Сообщение = Hello, Hexlet!
+  steps:
+    - Находим чат General в правом верху экрана
     - В поисковой строке чата General пишем сообщение
     - Нажимаем кнопку Send
   expected-result: |
