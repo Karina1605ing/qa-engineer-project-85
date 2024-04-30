@@ -1,13 +1,190 @@
 ---
 - summary: |
-    Проверка возможности провести игру без регистрации
+    Проверка возможности подключиться к случайной игре с ботом без регистрации
   requirement: |
-    Пользователь должен иметь возможность провести игру без регистрации
+    Пользователь имеет возможность подключиться к случайной игре с ботом без регистрации
   prerequisites: |
     открыта страница сайта https://codebattle.hexlet.io/
   test-data: |
-    empty
+    отсутствуют
   steps:
     - Нажимаем на кнопку "TRY SIMPLE BATTLE" 
   expected-result: |
-    Пользователь должен попасть в игру
+    Пользователь должен подключиться к случайной игре с ботом
+
+- summary: |
+    Проверка возможности зарегистрироваться на сайте с помощью e-mail
+  requirement: |
+    Пользователь имеет возможность зарегистрироваться на сайте с помошью e-mail
+  prerequisites: |
+    открыта страница регистрации https://codebattle.hexlet.io/users/new?locale=en&next=%2Fgames%2F200290%2F
+  test-data: |
+    Nickname = Karina05_16 
+    Email = karina@mail.ru
+    Password = 123456
+  steps:
+    - Вводим Nickname
+    - Вводим Email
+    - Вводим Password
+    - Потверждаем Password в графе Password Confirmation
+    - Нажимаем кнопку Submit
+  expected-result: |
+    Пользователь должен попасть на главную страницу, в верхней правой части страницы отображается созданное имя пользователя
+
+- summary: |
+    Проверка возможности авторизации через Github
+  requirement: |
+    Пользователь имеет возможность авторизоваться на сайте с помощью Github
+  prerequisites: |
+    Открыта страница авторизации https://codebattle.hexlet.io/session/new?locale=en&next=%2F
+  test-data: |
+    Username = KarinaMalsTest
+    Password = 06060606
+  steps:
+    - Нажать "Sign in with Github"
+    - Ввести Username и Password
+    - Нажать кнопку "Sign in" 
+  expected-result: |
+    Пользователь должен попасть на главную страницу, в верхней правой части страницы отображается имя пользователя Github
+
+- summary: |
+    Проверка возможности авторизации через Discord
+  requirement: |
+    Пользователь имеет возможность авторизоваться на сайте с помощью Discord
+  prerequisites: |
+    Открыта страница авторизации https://codebattle.hexlet.io/session/new?locale=en&next=%2F
+  test-data: |
+    email  = karinaing06@mailru
+    Password = 06060606
+  steps:
+    - Нажать "Sign in with Discord"
+    - Ввести email и Password
+    - Нажать кнопку "Вход" 
+  expected-result: |
+    Пользователь должен попасть на главную страницу, в верхней правой части страницы отображается имя пользователя Discord
+
+- summary: |
+    Проверка авторизации пользователя с помощью e-mail
+  requirement: |
+    Пользователь имеет возможность авторизоваться на сайте с помощью e-mail и пароля
+  prerequisites:
+    Открыта страница авторизации https://codebattle.hexlet.io/session/new?locale=en&next=%2F
+  test-data: |
+    Email = karina@mail.ru
+    Password = 123456
+  steps:
+    - Вводим Email
+    - Вводим Password
+    - Нажимаем кнопку "Submit"
+  expected-result: |
+    Пользователь должен попасть на главную страницу, в верхней правой части страницы отображается созданное имя пользователя
+
+- summary: |
+    Проверка возможности восстановления пароля
+  requirement: |
+    Пользователь имеет возможность восстановить забытый пароль
+  prerequisites:
+    Открыта страница авторизации https://codebattle.hexlet.io/session/new?locale=en&next=%2F, открыт email
+  test-data: |
+    Email = karina@mail.ru
+  steps:
+    - Нажимаем на кнопку Forgot your password?
+    - Вводим Email
+    - Нажимаем кнопку Submit
+    - Проверяем эллектронную почту на наличие письма
+    - Нажимаем на ссылку указаную в письме
+    - Придумываем новый пароль
+    - Нажимаем кнопку Save
+  expected-result: |
+    Пользователь должен попасть на главную страницу, в верхней правой части страницы отображается созданное имя пользователя
+
+- summary: |
+    Неуспешная регистрация с именем пользователя, которое состоит из одних цифр
+  requirement: |
+    Имя пользователя должно состоять из латинских букв, содержать цифры, нижние подчеркивания и начинаться с заглавной буквы
+  prerequisites:
+    Открыта страница регистрации https://codebattle.hexlet.io/users/new?locale=en&next=%2F
+  test-data: |
+    Email = karina@mail.ru 
+    Nickname = 111666 
+    Password = 111111
+  steps:
+    - Вводим Nickname
+    - Вводим Email
+    - Вводим Password
+    - Потверждаем Password в графе Password Confirmation
+    - Нажимаем кнопку Submit
+  expected-result: |
+     Пользователь не сможет зарегистрироваться, в графе Nickname будет написано "Can contain letters, numbers and underscores and should begin with a Latin letter"
+
+- summary: |
+    Неуспешная регистрация с именем пользователя, которое состоит из 20 символов
+  requirement: |
+    Имя пользователя должно содержать от 3 до 16 символов
+  prerequisites:
+    Открыта страница регистрации https://codebattle.hexlet.io/users/new?locale=en&next=%2F
+  test-data: |
+    Email = karina@mail.ru 
+    Nickname = Karina111_1234567890
+    Password = 111111
+  steps:
+    - Вводим Nickname
+    - Вводим Email
+    - Вводим Password
+    - Потверждаем Password в графе Password Confirmation
+    - Нажимаем кнопку Submit
+  expected-result: |
+     Пользователь не сможет зарегистрироваться, в графе Nickname будет написано "Should be from 3 to 16 characters"
+
+- summary: |
+    Неуспешная регистрация с паролем, который состоит из 5 символов
+  requirement: |
+    Пароль должен содержать от 6 до 16 символов
+  prerequisites:
+    Открыта страница регистрации https://codebattle.hexlet.io/users/new?locale=en&next=%2F
+  test-data: |
+    Email = karina@mail.ru 
+    Nickname = Karina11_12
+    Password = 11111
+  steps:
+    - Вводим Nickname
+    - Вводим Email
+    - Вводим Password
+    - Потверждаем Password в графе Password Confirmation
+    - Нажимаем кнопку Submit
+  expected-result: |
+     Пользователь не сможет зарегистрироваться, в графе Password будет написано "Should be from 6 to 16 characters"
+
+- summary: |
+    Неуспешная регистрации невалидного e-mail
+  requirement: |
+    E-mail должен быть валидным
+  prerequisites:
+    Открыта страница регистрации https://codebattle.hexlet.io/users/new?locale=en&next=%2F
+  test-data: |
+    Email = karina@mail 
+    Nickname = asdasdasd 
+    Password = 12341234
+  steps:
+    - Вводим Nickname
+    - Вводим Email
+    - Вводим Password
+    - Потверждаем Password в графе Password Confirmation
+    - Нажимаем кнопку Submit
+  expected-result: |
+    Пользователь не сможет зарегистрироваться, в графе E-mail будет написано "Invalid email"
+
+- summary: |
+    Проверка возможности отправления сообщений в чат General
+  requirement: |
+    Пользователь может оставлять сообщения в чате General
+  prerequisites:
+    Открыта страница https://codebattle.hexlet.io/#lobby
+  test-data: |
+    Сообщение = Hello, Hexlet!
+  steps:
+    - Находим чаи General в левом низу экрана
+    - В поисковой строке чата General пишем сообщение
+    - Нажимаем кнопку Send
+  expected-result: |
+    Сообщение появится в чате
