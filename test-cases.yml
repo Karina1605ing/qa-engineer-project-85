@@ -526,3 +526,318 @@
     - Нажимаем кнопку Send
   expected-result: |
     Сообщение появится в чате
+
+- summary: |
+   Проверка возможности выбора языка программирования в игре
+  requirement: |
+    В игре имеется возможность выбрать язык программирования
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with a bot
+    time control = 3 min
+    chose task = random task
+  steps:
+    - Слева в нижнем углу в выпадающем списке языков программамирования выбираем язык Python 3.12.2
+  expected-result: |
+   Синтаксис в редакторе кода меняется с учетом выбранного языка
+
+- summary: |
+    Проверка возможности продолжения игры, если игрок вылетел
+  requirement: |
+    Пользователь, которого выкинуло, может продолжить игру, если ее время не окончено
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with other users
+    time control = 7 min
+    chose task = random task
+  steps:
+    - Ожидаем подключения другого игрока к созданной игре
+    - Отключаем интернет
+    - Нажимаем на кнопку check solution
+    - Перезагружаем страницу
+    - Заново включаем интернет
+    - Перезагружаем страницу
+  expected-result: |
+   После переподключения интернета можно вернуться в игру
+
+- summary: |
+    Проверка возможности продолжения игры, если соперник отсутствует
+  requirement: |
+    Пользователь продолжает игру по времени, несмотря на отсутствие соперника
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with other users
+    time control = 7 min
+    chose task = random task
+  steps:
+    - Ожидаем подключения другого игрока к созданной игре
+    - Нажимаем на кнопку back to home
+    - Заново заходим в игру через Continue
+  expected-result: |
+   После возвращения справа указано "Online players: 2", в списке значится сам пользователь и соперник
+
+- summary: |
+    Проверка возможности выбора языка задачи в игре
+  requirement: |
+    Задача предлагается на русском и английском языках
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with a bot
+    time control = 7 min
+    chose task = random task
+  steps:
+    - В поле задачи меняем язык задачи с "RU" на "EN"
+  expected-result: |
+   После смены языка задача отображена на английском
+
+- summary: |
+    Проверка возможности расширения задачи в отдельное окно 
+  requirement: |
+    Пользователь имеет возможность развернуть задачу в отдельное модальное окно
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with a bot
+    time control = 7 min
+    chose task = random task
+  steps:
+    - В поле задачи нажимаем на кнопку разворота экрана
+  expected-result: |
+   Задача появляется развернуто в отдельном модальном окне
+
+- summary: |
+    Проверка возможности просмотра гайда к игре 
+  requirement: |
+    Пользователь может просмотреть гайд к игре
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with a bot
+    time control = 7 min
+    chose task = random task
+  steps:
+    - В поле задачи нажимаем на кнопку show gide
+  expected-result: |
+   Появляется модальное окно с гайдом к игре
+
+- summary: |
+    Проверка возможности просмотра доступа списка игр  
+  requirement: |
+    Пользователь может просматривать списки игр и подключаться к доступным для подключения играм, созданными другими игроками
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+  test-data: |
+    отсутствуют
+  steps:
+    - Выбираем игру и нажимаем Fight
+  expected-result: |
+   В лобби высвечивается список игр. Доступные игры помечены кнопкой Fight. После нажатия на кнопку пользователь подключается к игре другого пользователя
+
+- summary: |
+    Проверка возможности перехода в vim-режим
+  requirement: |
+    Пользователь имеет возможность перехода в vim-режим
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with a bot
+    time control = 7 min
+    chose task = random task
+  steps:
+    - В поле решения нажимаем на кнопку Vim
+  expected-result: |
+   Терминал переключается в Vim-режим
+
+- summary: |
+    Проверка возможности просмотра процесса написания кода соперником
+  requirement: |
+    Пользователь имеет возможность просматривать процесс написания кода соперником в режиме online
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with other users
+    time control = 7 min
+    chose task = random task
+  steps:
+    - Ожидаем подключения другого игрока к созданной игре
+  expected-result: |
+   В поле решения соперника виден процесс редактирования кода online
+
+- summary: |
+    Проверка возможности провреки решения
+  requirement: |
+    Пользователь имеет возможность проверить своё решение неограниченное количество раз
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with a bot
+    time control = 7 min
+    chose task = random task
+    Решение игры:
+    const _ = require("lodash");
+    const R = require("rambda");
+    const solution = (first, second) => {
+    return 0;};
+    module.exports = solution;
+  steps:
+    - В редактор кода вписываем рандомный текст
+    - Нажимаем на кнопку Check solution
+    - В редактор кода прописываем решение игры
+    - Нажимаем на кнопку Check solution
+  expected-result: |
+    После проверки кода появляется сообщение о неверности или правильности решения
+
+- summary: |
+    Проверка возможности получения уведомление о приглашении на игру
+  requirement: |
+    ППользователь имеет возможность получить уведомление о приглашении на игру
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+  test-data: |
+    отсутствуют
+  steps:
+    - Другой игрок приглашает пользователя  на игру
+  expected-result: |
+    В правом верхнем углу над скрещенными мечами появляется индикатор "1"
+
+- summary: |
+    Проверка возможности копирования ссылки на созданную игру
+  requirement: |
+    Пользователь имеет возможность просмотреть и скопировать ссылку созданной им игры
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with other users
+    time control = 7 min
+    chose task = random task
+  steps:
+    - Нажимаем на кнопку Continue в лобби
+    - Нажимаем на Copy справа от появившейся ссылки
+  expected-result: |
+    Кнопка Copy меняется на Copied, ссылка на игру скопирована
+
+- summary: |
+    Проверка возможности выйти из игры
+  requirement: |
+    Пользователь имеет возможность выйти из игры на основную страницу
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with a bot
+    time control = 7 min
+    chose task = random task
+  steps:
+    - Справа нажимаем на Back to home
+  expected-result: |
+    Пользователь возвращается в лобби, созданная игра высвечивается с кнопкой Continue
+
+- summary: |
+    Проверка возможности сброса решения
+  requirement: |
+    Пользователь имеет возможность сбросить свое решение задачи
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with a bot
+    time control = 7 min
+    chose task = random task
+  steps:
+    - В поле редактора кода набираем текст
+    - Нажимаем Reset editor
+  expected-result: |
+    Изменения, внесенные в редактор кода, сброшены
+
+- summary: |
+    Проверка возможности смены цветовой темы терминала
+  requirement: |
+    Пользователь имеет возможность поменять цветовую тему терминала
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with a bot
+    time control = 7 min
+    chose task = random task
+  steps:
+    - Нажимаем на Light
+  expected-result: |
+    Тема редактора кода изменилась на светлую, кнопка поменялась на Dark
+
+- summary: |
+    Проверка возможности взять реванш
+  requirement: |
+    Пользователь имеет возможность взять реванш в случае проигрыша
+  prerequisites:
+    Пользователь авторизован
+    Открыта страница https://codebattle.hexlet.io/#lobby
+    Создана игра
+  test-data: |
+    Параметры игры: 
+    level = 1
+    game type = with a bot
+    time control = 7 min
+    chose task = random task
+  steps:
+    - Нажимаем на Give up
+    - Нажимаем на появившуюся справа кнопку Rematch
+  expected-result: |
+    Открывается новая игра с тем же соперником
+
+    
