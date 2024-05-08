@@ -162,8 +162,8 @@
   prerequisites:
     Открыта страница регистрации https://codebattle.hexlet.io/users/new?locale=en&next=%2F
   test-data: |
-    Email = karina@mail 
-    Nickname = asdasdasd 
+    Email = 1234@1234.ru 
+    Nickname = Nana09_0 
     Password = 12341234
   steps:
     - Вводим Nickname
@@ -436,12 +436,6 @@
     game type = with a bot
     time control = 36 min
     chose task = random task
-    Решение игры:
-    const _ = require("lodash");
-    const R = require("rambda");
-    const solution = (first, second) => {
-    return 0;};
-    module.exports = solution;
   steps:
     - Выбираем язык программирования Node.js
     - В редактор кода прописываем решение игры
@@ -714,12 +708,6 @@
     game type = with a bot
     time control = 7 min
     chose task = random task
-    Решение игры:
-    const _ = require("lodash");
-    const R = require("rambda");
-    const solution = (first, second) => {
-    return 0;};
-    module.exports = solution;
   steps:
     - В редактор кода вписываем рандомный текст
     - Нажимаем на кнопку Check solution
