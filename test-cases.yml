@@ -36,6 +36,7 @@
   requirement: |
     Пользователь имеет возможность авторизоваться на сайте с помощью Github
   prerequisites: |
+    Пользователь зарегистрирован на Github
     Открыта страница авторизации https://codebattle.hexlet.io/session/new?locale=en&next=%2F
   test-data: |
     Username = KarinaMalsTest
@@ -52,6 +53,7 @@
   requirement: |
     Пользователь имеет возможность авторизоваться на сайте с помощью Discord
   prerequisites: |
+    Пользователь зарегистрирован на Discord
     Открыта страница авторизации https://codebattle.hexlet.io/session/new?locale=en&next=%2F
   test-data: |
     email  = karinaing06@mailru
